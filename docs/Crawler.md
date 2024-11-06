@@ -35,7 +35,7 @@
 ### process.py
 
 - **功能**：进一步处理上一步的文件，过滤因不明原因造成的多余的空行和用户名数据，保护隐私，输出到 `./final_output`。
-- 请先修改 `filter.cpp` 第 10 行的字符串为自己的用户名，然后编译 `filter.cpp`：
+- 请先修改 `filter.cpp` 第 5 行的字符串为自己的用户名，然后编译 `filter.cpp`：
   ```shell
   g++ filter.cpp -o a.exe
   ```

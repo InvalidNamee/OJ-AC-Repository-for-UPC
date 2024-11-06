@@ -44,4 +44,3 @@
   python process.py
   ```
   处理完的代码会保存在 `./final_output` 中，每个子文件夹以 `Contest_ID` 编号命名，内部是该 Contest 下的所有提交记录。
-```

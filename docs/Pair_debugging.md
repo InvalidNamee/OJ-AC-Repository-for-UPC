@@ -28,7 +28,7 @@ int main() {
     system("g++ mkdat.cpp -o mkdat && g++ accepted_code.cpp -o std && g++ your_code.cpp -o ans");
     for (int i = 0; i < T; ++i) {
         // 生成随机数据，分别运行两个程序
-        system("./mkdat >input && ./std <input >std_ans && ./ans >your_ans");
+        system("./mkdat >input && ./std <input >std_ans && ./ans <input >your_ans");
         // 比较 std_ans 和 your_ans
         if (system("diff std_ans your_ans")) {
             // 发现问题，保留数据并结束程序

@@ -35,8 +35,9 @@ for contest_folder in os.listdir(code_folder):
                 with open(first_file_path, 'r', encoding='utf-8') as f:
                     code_content = f.read()
 
-                # 生成新文件名并写入合并内容
-                new_file_name = f"{problem_id}_" + "_".join(entry[1] for entry in entries) + ".cpp"
+                # 按名称长度排序后生成新文件名
+                sorted_entries = sorted(entries, key=lambda x: len(x[1]))
+                new_file_name = f"{problem_id}_" + "_".join(entry[1] for entry in sorted_entries) + ".cpp"
                 new_file_path = os.path.join(merged_contest_folder, new_file_name)
 
                 # 将内容写入新文件

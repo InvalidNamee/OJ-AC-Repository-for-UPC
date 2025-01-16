@@ -1,0 +1,65 @@
+#include <cstdio>
+#include <cstring>
+#include <queue>
+
+using namespace std;
+
+int dx[] = {-1, 1, 0, 0}, dy[] = {0, 0, -1, 1};
+char mp[50][50];
+int dis[50][50];
+bool vis[50][50];
+int n, m;
+
+bool valid(int x, int y) {
+    return x > 0 && x <= n && y > 0 && y <= m && (mp[x][y] == '@' || mp[x][y] == 'x');
+}
+
+int main() {
+    scanf("%d%d", &n, &m);
+    for (int i = 1; i <= n; ++i) {
+        scanf("%s", mp[i] + 1);
+    }
+    
+    pair<int, int> s, t;
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= m; ++j) {
+            if (mp[i][j] == 'r') {
+                mp[i][j] = '@';
+                s = {i, j};
+            }
+            else if (mp[i][j] == 'a') {
+                mp[i][j] = '@';
+                t = {i, j};
+            }
+        }
+    }
+    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> q;
+    memset(dis, 0x3f, sizeof(dis));
+    q.push({0, s});
+    dis[s.first][s.second] = 0;
+    while (!q.empty()) {
+        pair<int, int> x = q.top().second;
+        q.pop();
+        if (vis[x.first][x.second]) continue;
+        vis[x.first][x.second] = true;
+        for (int i = 0; i < 4; ++i) {
+            if (valid(x.first + dx[i], x.second + dy[i])){
+                int w = mp[x.first + dx[i]][x.second + dy[i]] == 'x' ? 2 : 1;
+                if (dis[x.first + dx[i]][x.second + dy[i]] > dis[x.first][x.second] + w) {
+                    dis[x.first + dx[i]][x.second + dy[i]] = dis[x.first][x.second] + w;
+                    q.push({dis[x.first + dx[i]][x.second + dy[i]], {x.first + dx[i], x.second + dy[i]}});
+                }
+            }
+        }
+    }
+    if (dis[t.first][t.second] == 0x3f3f3f3f) printf("Impossible\n");
+    else printf("%d\n", dis[t.first][t.second]);
+    return 0;
+}
+/**************************************************************
+	Problem: 21827
+	Language: C++
+	Result: 正确
+	Time:1 ms
+	Memory:1376 kb
+****************************************************************/

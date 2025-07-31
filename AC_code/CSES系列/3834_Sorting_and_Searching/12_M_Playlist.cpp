@@ -1,10 +1,10 @@
 #include <cstdio>
-#include <unordered_map>
+#include <map>
 
 using namespace std;
 
 int a[200010];
-unordered_map<int, int> last;
+map<int, int> last;
 
 int main() {
     int n;
